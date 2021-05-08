@@ -4,9 +4,11 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    
     optimization: {
         minimizer: [ new OptimizeCssAssetsPlugin() ]
     },
+
     module: {
         rules: [
             {
