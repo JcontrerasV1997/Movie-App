@@ -23,9 +23,9 @@ export const consumoApi = async () => {
 export const mostrarPelicula = (peliculas) => {
   peliculas.forEach((peliculas) => {
     const { title, poster_path, vote_average, overview } = peliculas;
-
     const listaPeli = document.createElement("div");
     listaPeli.classList.add("movie");
+    
     listaPeli.innerHTML = `
     <img src="${IMG_PATH + peliculas.poster_path}" alt="${peliculas.title}" />
     <div class="movie-info">
