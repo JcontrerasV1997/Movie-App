@@ -1,7 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("optimize-css-assets-webpack-plugin");
-const MinifyPlugin = require("babel-minify-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
@@ -68,7 +67,6 @@ module.exports = {
       filename: "[name].[contentHash].css",
       ignoreOrder: false,
     }),
-    new MinifyPlugin(),
     new CleanWebpackPlugin(),
   ],
 };
