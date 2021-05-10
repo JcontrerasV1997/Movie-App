@@ -1,74 +1,80 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require("optimize-css-assets-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
- const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpack    = require('html-webpack-plugin')
+const MiniCssExtract = require('mini-css-extract-plugin');
+const CopyPlugin     = require("copy-webpack-plugin");
+
+
+const CssMinimizer = require('css-minimizer-webpack-plugin');
+const Terser       = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: "production",
+    
+    mode: "production",
 
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        test: /\.js(\?.*)?$/i,
-      }),
-      new OptimizeCssAssetsPlugin(),
-    ],
-  },
+    output: {
+        clean: true,
+        filename: 'main.[contenthash].js'
+    },
+    
 
-  output: {
-    filename: "main.[contentHash].js",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      {
-        test: /\.css$/,
-        exclude: /styles\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /styles\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: false },
-          },
-        ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              esModule: false,
-              name: "assets/[name].[ext]",
+    module: {
+        rules: [
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+                options: {
+                    sources: false
+                }
             },
-          },
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[contentHash].css",
-      ignoreOrder: false,
-    }),
-    new CleanWebpackPlugin(),
-  ],
-};
+            {
+                test: /\.css$/,
+                exclude: /styles.css$/,
+                use: [ 'style-loader', 'css-loader']
+            },
+            {
+                test: /styles.css$/,
+                use: [ MiniCssExtract.loader, 'css-loader' ]
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: "babel-loader",
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
+            }
+        ]
+    },
+
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new CssMinimizer(),
+            new Terser(),
+        ]
+    },
+
+    plugins: [
+        new HtmlWebpack({
+            title: 'Mi Webpack App',
+            // filename: 'index.html',
+            template: './src/index.html'
+        }),
+        
+        new MiniCssExtract({
+            filename: '[name].[fullhash].css',
+            ignoreOrder: false
+        }),
+
+        // new CopyPlugin({
+        //     patterns: [
+        //         { from: 'src/assets/', to: 'assets/' }
+        //     ]
+        // })
+    ]
+}

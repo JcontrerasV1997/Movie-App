@@ -1,33 +1,42 @@
 {
   "name": "movie-app",
   "version": "1.0.0",
-  "description": "proyecto-movie-app",
+  "description": "proyecto js consumo de api webpack",
   "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --open --port=8080"
+    "start": "webpack serve --config webpack.config.js --open --port=8080"
   },
-  "author": "Juan Manuel Contreras",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JcontrerasV1997/Movie-App.git"
+  },
+  "author": "Juan Manuel",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JcontrerasV1997/Movie-App/issues"
+  },
+  "homepage": "https://github.com/JcontrerasV1997/Movie-App#readme",
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
-    "babel-preset-minify": "^0.5.1",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.4.2",
+    "copy-webpack-plugin": "^8.1.1",
+    "css-loader": "^5.2.4",
     "css-minimizer-webpack-plugin": "^2.0.0",
-    "file-loader": "^5.0.2",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "style-loader": "^1.1.2",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
