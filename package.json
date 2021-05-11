@@ -24,6 +24,7 @@
   "homepage": "https://github.com/JcontrerasV1997/Movie-App#readme",
   "devDependencies": {
     "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^8.1.1",
@@ -33,6 +34,7 @@
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
+    "regenerator-runtime": "^0.13.7",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.37.0",
